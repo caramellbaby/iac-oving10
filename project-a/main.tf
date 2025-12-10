@@ -7,7 +7,6 @@ terraform {
   }
 
   backend "azurerm" {
-    use_oidc = true
     resource_group_name  = "rg-terraform-backend-pamir"
     storage_account_name = "pamirterraformstate123"
     container_name       = "tfstate"
