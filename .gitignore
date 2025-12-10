@@ -1,0 +1,13 @@
+# Terraform directories
+.terraform/
+**/.terraform/
+
+# Provider binaries
+terraform-provider-*
+
+# State files
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
