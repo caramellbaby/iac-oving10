@@ -1,13 +1,14 @@
-name: Infrastructure Drift Detection
-
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 */6 * * *"   # hver 6. time
-
 jobs:
   detect_drift:
     runs-on: ubuntu-latest
+
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ""
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_USE_OIDC: true
+      WORKING_DIR: ./project-b
 
     steps:
       - name: Checkout code
@@ -30,4 +31,5 @@ jobs:
       - name: Terraform Plan (Drift Check)
         working-directory: ./project-b
         run: terraform plan -detailed-exitcode
+
 
